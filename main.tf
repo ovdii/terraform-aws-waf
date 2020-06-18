@@ -105,7 +105,7 @@ resource "aws_wafregional_web_acl" "wafacl" {
       priority = 1 + rule.key
 
       action {
-        type = "BLOCK"
+        type = "COUNT"
       }
     }
   }
@@ -116,7 +116,7 @@ resource "aws_wafregional_web_acl" "wafacl" {
     priority = 1 + length(aws_wafregional_rule.ips.*.id)
 
     action {
-      type = "BLOCK"
+      type = "COUNT"
     }
   }
 
@@ -126,7 +126,7 @@ resource "aws_wafregional_web_acl" "wafacl" {
     priority = 1 + length(aws_wafregional_rule.ips.*.id) + 1
 
     action {
-      type = "BLOCK"
+      type = "COUNT"
     }
   }
 
@@ -138,7 +138,7 @@ resource "aws_wafregional_web_acl" "wafacl" {
       priority = 1 + length(aws_wafregional_rule.ips.*.id) + 1 + 1 + rule.key
 
       action {
-        type = "BLOCK"
+        type = "COUNT"
       }
     }
   }
@@ -164,7 +164,7 @@ resource "aws_wafregional_web_acl" "wafacl" {
       priority = 1 + length(aws_wafregional_rule.ips.*.id) + 1 + 1 + length(var.rate_based_rules) + (length(var.wafregional_rule_f5_id) > 0 ? 1 : 0) + rule.key
 
       action {
-        type = "BLOCK"
+        type = "COUNT"
       }
     }
   }
